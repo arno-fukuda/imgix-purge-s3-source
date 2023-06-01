@@ -38,3 +38,11 @@
 * Update the IMGIX_API_KEY, IMGIX_SUBDOMAIN and S3_BUCKET_NAME
 
 * Run the script with `python3 main.py`
+
+## Note
+
+In order to not run into any rate limits, the script only sends around 9 purge requests per second.
+This means, you can achieve:
+* 540 purges in 1 minute
+* 16200 purges in 30 minutes
+* 32400 purges in 1 hour
