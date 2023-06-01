@@ -1,6 +1,7 @@
 import boto3
 import requests
 import json
+import time
 
 """ """
 #CONFIGURATION
@@ -19,6 +20,7 @@ API_ENDPOINT = "https://api.imgix.com/api/v1/purge"
 s3 = boto3.client('s3')
 purge_count = 0
 skipped_count = 0
+request_count = 0
 other_status = {}
 
 headers = {
@@ -56,6 +58,8 @@ for item in s3_response['Contents']:
                 other_status[response.status_code] = 1
             else:
                 other_status[response.status_code] += 1
+        if request_count % 9 == 0:
+             time.sleep(1) 
 
 """ """
 
