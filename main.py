@@ -2,16 +2,18 @@ import boto3
 import requests
 import json
 
-# CONFIGURATION
-# Issue key with purge permission from https://dashboard.imgix.com/api-keys
-IMGIX_API_KEY = '<API_KEY>'
+""" """
+#CONFIGURATION
 
-IMGIX_SUBDOMAIN = '<EXAMPLE>'  # https://<SUBDOMAIN>.imgix.net/path/image.jpg
+IMGIX_API_KEY = '<API_KEY>' #Issue key with purge permission from https://dashboard.imgix.com/api-keys
+
+IMGIX_SUBDOMAIN = '<EXAMPLE>'  #https://<SUBDOMAIN>.imgix.net/path/image.jpg
 
 S3_BUCKET_NAME = '<BUCKET_NAME>'
 
+""" """
+#Variable initialization
 
-# Variable initialization
 API_ENDPOINT = "https://api.imgix.com/api/v1/purge"
 
 s3 = boto3.client('s3')
@@ -37,7 +39,9 @@ payload = {
 # Retrieve list of all items in S3 bucket
 s3_response = s3.list_objects_v2(Bucket=S3_BUCKET_NAME)
 
-# Iterage through list and send purge request for each item.
+""" """
+
+# Iterate through list and send purge request for each item.
 for item in s3_response['Contents']:
     if not item['Key'].endswith('/'):
         payload['data']['attributes']['url'] = f"https://{IMGIX_SUBDOMAIN}.imgix.net/{item['Key']}"
@@ -52,6 +56,8 @@ for item in s3_response['Contents']:
                 other_status[response.status_code] = 1
             else:
                 other_status[response.status_code] += 1
+
+""" """
 
 # Print result
 print(f'{purge_count} assets were purged from cache. \n{skipped_count} assets were already removed. \nOther responses:{other_status}')
