@@ -1,13 +1,15 @@
 # Python script to bulk purge a list of S3 images from Imgix cache
 
 ## Prerequisites
-* Python 3
 
-* boto3 and requests library (`pip3 install boto3 requests`)
+- Python 3
 
-* AWS CLI installed (https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
+- boto3 and requests library (`pip3 install boto3 requests`)
 
-* AWS IAM User with **List** and **Get** permission to the bucket and items. You can use the below JSON policy draft.
+- AWS CLI installed (https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
+
+- AWS IAM User with **List** and **Get** permission to the bucket and items. You can use the below JSON policy draft.
+
 ```
 {
     "Version": "2012-10-17",
@@ -26,23 +28,23 @@
 }
 ```
 
-* AWS CLI configured (`aws config`)
+- AWS CLI configured (`aws config`)
 
-* Imgix API key with purge permission (Create on https://dashboard.imgix.com/api-keys)
-
+- Imgix API key with purge permission (Create on https://dashboard.imgix.com/api-keys)
 
 ## Setup & Execution
 
-* Open `main.py` and navigate to #CONFIGURATION
+- Open `config.yaml`
 
-* Update the IMGIX_API_KEY, IMGIX_SUBDOMAIN and S3_BUCKET_NAME
+- Update the IMGIX_API_KEY, IMGIX_SUBDOMAIN and S3_BUCKET_NAME and save file
 
-* Run the script with `python3 main.py`
+- Run the script with `python3 main.py`
 
 ## Note
 
 In order to not run into any rate limits, the script only sends around 9 purge requests per second.
 This means, you can achieve:
-* 540 purges in 1 minute
-* 16200 purges in 30 minutes
-* 32400 purges in 1 hour
+
+- 540 purges in 1 minute
+- 16200 purges in 30 minutes
+- 32400 purges in 1 hour
