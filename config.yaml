@@ -1,0 +1,8 @@
+# Issue key with purge permission from https://dashboard.imgix.com/api-keys
+IMGIX_API_KEY: "<API_KEY>"
+
+# https://<SUBDOMAIN>.imgix.net/path/image.jpg
+IMGIX_SUBDOMAIN: "<EXAMPLE>"
+
+# Your S3 Bucket Name
+S3_BUCKET_NAME: "<BUCKET_NAME>"
